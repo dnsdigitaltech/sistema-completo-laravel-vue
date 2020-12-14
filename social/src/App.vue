@@ -1,13 +1,20 @@
 <template>
-  <div>
+  <div>        
+    <nav-bar logo="Social" url="#" cor="green darken-1"/>
     <router-view/>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+
+  import NavBar from '@/components/layouts/NavBar.vue'
+
+  export default {
+    name: 'App',
+    components: {
+      NavBar
+    }
+  }
 </script>
 
 <style>
