@@ -1,8 +1,6 @@
 <template>
-    <div>
-        <div :class="'col s'+ tamanho">
-            <slot></slot>
-        </div>
+    <div :class="'col s'+ tamanho">
+        <slot></slot>
     </div>
 </template>
 
