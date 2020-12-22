@@ -9,7 +9,7 @@
           <grid-vue tamanho="4">
             <card-menu-vue>
               <div class="row valign-wrapper">
-                <grid-vue tamanho="8">
+                <grid-vue tamanho="4">
                   <img src="https://materializecss.com/images/yuna.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
                 </grid-vue>
                 <grid-vue tamanho="8">
@@ -44,6 +44,7 @@
   import FooterVue from '@/components/layouts/FooterVue.vue'
   import GridVue from '@/components/layouts/GridVue.vue'
   import CardMenuVue from '@/components/layouts/CardMenuVue.vue'
+
 
   export default {
     name: 'App',
