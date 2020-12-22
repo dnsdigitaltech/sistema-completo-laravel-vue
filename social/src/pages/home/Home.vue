@@ -1,5 +1,5 @@
 <template>
-  <span>
+  <site-template>
     <publicar-conteudo-vue />
     <card-conteudo-vue 
       perfil = "https://materializecss.com/images/yuna.jpg" 
@@ -11,16 +11,18 @@
         txt = "sdv ksbd vksdb vbsd vbs dbv sdv snd vnsd vnsd vn sdnv snd vnsd vnsdvnmsd vn sdonv sdn vosnd vnsd vnsd vsn"
       />
     </card-conteudo-vue>
-  </span>
+  </site-template>
 </template>
 
 <script>
+  import SiteTemplate from '@/templates/SiteTemplate.vue'
   import CardConteudoVue from '@/components/social/CardConteudoVue.vue'
   import CardDetalheVue from '@/components/social/CardDetalheVue.vue'
   import PublicarConteudoVue from '@/components/social/PublicarConteudoVue.vue'
   export default {
-    name: 'Nome',
+    name: 'Home',
     components: {
+      SiteTemplate,
       CardConteudoVue,
       CardDetalheVue,
       PublicarConteudoVue
