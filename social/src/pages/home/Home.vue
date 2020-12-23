@@ -33,13 +33,15 @@
   import CardConteudoVue from '@/components/social/CardConteudoVue.vue'
   import CardDetalheVue from '@/components/social/CardDetalheVue.vue'
   import PublicarConteudoVue from '@/components/social/PublicarConteudoVue.vue'
+  import GridVue from '@/components/layouts/GridVue.vue'
   export default {
     name: 'Home',
     components: {
       SiteTemplate,
       CardConteudoVue,
       CardDetalheVue,
-      PublicarConteudoVue
+      PublicarConteudoVue,
+      GridVue
     },
     data () {
       return {
