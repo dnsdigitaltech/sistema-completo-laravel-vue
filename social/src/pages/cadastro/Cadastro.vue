@@ -4,11 +4,13 @@
        <img src="https://super.abril.com.br/wp-content/uploads/2019/07/site_poprede.png" class="responsive-img" alt="">
     </span>
     <span slot="principal">
-        <h2>Login</h2>
-        <input type="email" name="email" placeholder="E-mail">
-        <input type="password" name="senha" placeholder="Senha">
-        <button class="btn">Entrar</button>
-        <router-link :to="'/cadastro'" class="btn orange">Cadastre-se</router-link> 
+      <h2>Cadastro</h2>
+      <input type="text" name="email" placeholder="Nome">
+      <input type="email" name="email" placeholder="E-mail">
+      <input type="password" name="senha" placeholder="Senha">
+      <input type="password" name="senha" placeholder="Confirme sua senha">
+      <button class="btn">Enviar</button> 
+      <router-link :to="'/login'" class="btn orange">Já tenho conta</router-link>  
     </span>
   </login-template>
 </template>
@@ -16,7 +18,7 @@
 <script>
   import LoginTemplate from '@/templates/LoginTemplate.vue'
   export default {
-    name: 'Login',
+    name: 'Cadastro',
     components: {
       LoginTemplate
     },
