@@ -2,7 +2,7 @@
     <div>
         <nav :class="cor || 'blue'">
             <div class="nav-wrapper container">
-                <a :href="url || '#/'" class="brand-logo">{{logo || 'Social'}}</a>
+                <router-link :to="url || '/'" class="brand-logo">{{logo || 'Social'}}</router-link>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <slot/>
                 </ul>
