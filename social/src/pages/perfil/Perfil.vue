@@ -56,21 +56,20 @@
     },
     methods: {
       perfil(){
-        console.log('ok')
-        axios.post(`http://127.0.0.1:8000/api/perfil`,{
+        axios.put(`http://127.0.0.1:8000/api/perfil`,{
           name: this.name,
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
-        })
+        },{"headers":{"authorization":"Bearer "+this.usuario.token}})
         .then(response => {
-          console.log(response)
-          if(response.data.token){
+          console.log(this.usuario.token)
+          /*if(response.data.token){
             //login com sucesso
-            console.log('Cadastro realizado com sucesso')
-            sessionStorage.setItem('usuario',JSON.stringify(response.data));
+            console.log(response.data)
+           / sessionStorage.setItem('usuario',JSON.stringify(response.data));
             //ao logar vai pra home
-            this.$router.push('/')
+            this.$router.push('/')*
           }else if(response.data.status == 'false'){
             //login não existe
             alert('Erro no cadastro! Tente novamente mais tarde!');
@@ -82,7 +81,7 @@
               erros += erro + " ";
             }
             alert(erros);
-          }
+          }*/
         })
         .catch(e => {
           alert("Erro! Tente novamente mais tarde!")

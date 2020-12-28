@@ -15,13 +15,20 @@ use App\Http\Controllers\SocialController;
 |
 */
 
-//////////////////////////SOCIAL//////////////////////////
+//////////////////////////CADASTRO|LOGIN//////////////////////////
 Route::group([
     'middleware' => 'api',
     //'prefix' => 'route'
 ], function ($router) {
     Route::post('/cadastro', [SocialController::class, 'cadastro']);
     Route::post('/login', [SocialController::class, 'login']);
+});
+
+//////////////////////////PERFIL//////////////////////////
+Route::group([
+    'middleware' => 'auth:api',
+], function ($router) {
+    Route::put('/perfil', [SocialController::class, 'perfil']);
 });
 
 Route::middleware('auth:api')->get('/usuario', function (Request $request) {

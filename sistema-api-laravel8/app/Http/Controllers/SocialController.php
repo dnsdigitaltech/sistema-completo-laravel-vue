@@ -64,4 +64,14 @@ class SocialController extends Controller
             return ['status' => 'false'];
         }    
     }
+
+    public function perfil(Request $request)
+    {
+        
+        $user = $request->user();
+        
+        $data = $request->all();
+        
+        return $data;
+    }
 }
