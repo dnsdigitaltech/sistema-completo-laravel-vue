@@ -64,15 +64,11 @@
         },{"headers":{"authorization":"Bearer "+this.usuario.token}})
         .then(response => {
           console.log(this.usuario.token)
-          /*if(response.data.token){
+          if(response.data.token){
             //login com sucesso
             console.log(response.data)
-           / sessionStorage.setItem('usuario',JSON.stringify(response.data));
-            //ao logar vai pra home
-            this.$router.push('/')*
-          }else if(response.data.status == 'false'){
-            //login não existe
-            alert('Erro no cadastro! Tente novamente mais tarde!');
+           sessionStorage.setItem('usuario',JSON.stringify(response.data));
+           alert('Perfil atualizado com sucesso!')
           }else{
             //error de validação
             console.log('error de validação')
@@ -81,7 +77,7 @@
               erros += erro + " ";
             }
             alert(erros);
-          }*/
+          }
         })
         .catch(e => {
           alert("Erro! Tente novamente mais tarde!")
