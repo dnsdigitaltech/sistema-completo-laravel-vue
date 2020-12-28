@@ -63,12 +63,17 @@
       let usuarioAux = sessionStorage.getItem('usuario');
       if(usuarioAux){
         this.usuario = JSON.parse(usuarioAux)        
+      }else{
+        //se não tiver logado vai pra home
+        this.$router.push('/login')
       }
     },
     methods: {
       sair(){
         sessionStorage.clear();
         this.usuario = false
+        //se não tiver logado vai pra home
+        this.$router.push('/login')
       }
     },
   }
