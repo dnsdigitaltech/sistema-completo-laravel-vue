@@ -23,6 +23,6 @@ Route::group([
     Route::post('/cadastro', [SocialController::class, 'cadastro']);
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/usuario', function (Request $request) {
     return $request->user();
 });

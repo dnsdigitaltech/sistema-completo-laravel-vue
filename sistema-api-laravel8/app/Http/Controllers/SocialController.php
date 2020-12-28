@@ -22,6 +22,8 @@ class SocialController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
+        $user->token = $user->createToken($user->email)->accessToken;
+
         return $user;        
     }
 
