@@ -42,16 +42,19 @@
           }else if(response.data.status == 'false'){
             //login não existe
             console.log('login não existe')
-
+            alert('Login iválido!');
           }else{
             //error de validação
             console.log('error de validação')
-
+            let erros = '';
+            for(let erro of Object.values(response.data)){
+              erros += erro + " ";
+            }
+            alert(erros);
           }
         })
         .catch(e => {
-          console.log(e)
-          this.errors.push(e)
+          alert("Erro! Tente novamente mais tarde!")
         })
       }
     },
