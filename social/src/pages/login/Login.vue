@@ -39,6 +39,8 @@
           if(response.data.token){
             //login com sucesso
             console.log('login com sucesso')
+            sessionStorage.setItem('usuario',JSON.stringify(response.data));
+
           }else if(response.data.status == 'false'){
             //login não existe
             console.log('login não existe')

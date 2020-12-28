@@ -3,8 +3,10 @@
     <header>
       <nav-bar logo="Social" url="/" cor="green darken-1">
         <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/login">Entrar</router-link></li>
-        <li><router-link to="/cadastro">Cadastre-se</router-link></li>
+        <li v-if="!usuario"><router-link to="/login">Entrar</router-link></li>
+        <li v-if="!usuario"><router-link to="/cadastro">Cadastre-se</router-link></li>
+        <li v-if="usuario"><router-link to="/perfil">{{usuario.name}}</router-link></li>
+        <li v-if="usuario"><a v-on:click="sair()">sair</a></li>
       </nav-bar>
     </header> 
     <main>
@@ -42,12 +44,30 @@
 
   export default {
     name: 'LoginTemplate',
+    data(){
+      return {
+        usuario: false
+      }
+    },
     components: {
       NavBar,
       FooterVue,
       GridVue,
       CardMenuVue
-    }
+    },
+    created() {
+      console.log('created');
+      let usuarioAux = sessionStorage.getItem('usuario');
+      if(usuarioAux){
+        this.usuario = JSON.parse(usuarioAux)
+      }
+    },
+    methods: {
+      sair(){
+        sessionStorage.clear();
+        this.usuario = false
+      }
+    },
   }
 </script>
 

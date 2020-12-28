@@ -48,7 +48,7 @@ class SocialController extends Controller
         //validação
         $validacao = Validator::make($data, [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+            'password' => 'required|string',
         ]);
 
         if($validacao->fails())
