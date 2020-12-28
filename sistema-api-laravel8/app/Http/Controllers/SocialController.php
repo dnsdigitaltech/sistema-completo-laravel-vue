@@ -48,7 +48,7 @@ class SocialController extends Controller
         //validação
         $validacao = Validator::make($data, [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string',
+            'password' => 'required|string|min:6',
         ]);
 
         if($validacao->fails())
@@ -61,7 +61,7 @@ class SocialController extends Controller
             $user->token = $user->createToken($user->email)->accessToken;
             return $user;  
         }else{
-            return ['error' => 'login ou senha inválido(s)'];
+            return ['status' => 'false'];
         }    
     }
 }
