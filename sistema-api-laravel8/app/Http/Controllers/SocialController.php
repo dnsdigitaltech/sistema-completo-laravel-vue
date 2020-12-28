@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\User;
+use Auth;
 
 class SocialController extends Controller
 {
@@ -40,5 +41,27 @@ class SocialController extends Controller
         return $user;        
     }
 
-    
+    public function login(Request $request)
+    {
+        $data = $request->all();
+        
+        //validação
+        $validacao = Validator::make($data, [
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string',
+        ]);
+
+        if($validacao->fails())
+        {
+            return $validacao->errors();
+        }
+        
+        if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
+            $user = auth()->user();
+            $user->token = $user->createToken($user->email)->accessToken;
+            return $user;  
+        }else{
+            return ['error' => 'login ou senha inválido(s)'];
+        }    
+    }
 }

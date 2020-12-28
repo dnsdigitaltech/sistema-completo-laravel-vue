@@ -21,6 +21,7 @@ Route::group([
     //'prefix' => 'route'
 ], function ($router) {
     Route::post('/cadastro', [SocialController::class, 'cadastro']);
+    Route::post('/login', [SocialController::class, 'login']);
 });
 
 Route::middleware('auth:api')->get('/usuario', function (Request $request) {
