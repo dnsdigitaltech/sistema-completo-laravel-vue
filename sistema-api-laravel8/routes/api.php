@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\SocialController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,8 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/teste', function (Request $request) {
-    return $request->all();
+//////////////////////////ROTAS-PERMISSÕES//////////////////////////
+Route::group([
+    'middleware' => 'api',
+    //'prefix' => 'route'
+], function ($router) {
+    Route::post('/cadastro', [SocialController::class, 'cadastro']);
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
