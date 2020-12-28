@@ -15,7 +15,7 @@ use App\Http\Controllers\SocialController;
 |
 */
 
-//////////////////////////ROTAS-PERMISSÕES//////////////////////////
+//////////////////////////SOCIAL//////////////////////////
 Route::group([
     'middleware' => 'api',
     //'prefix' => 'route'
