@@ -60,6 +60,8 @@
       let usuarioAux = sessionStorage.getItem('usuario');
       if(usuarioAux){
         this.usuario = JSON.parse(usuarioAux)
+        //se tiver logado vai pra home
+        this.$router.push('/')
       }
     },
     methods: {
