@@ -45,4 +45,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relacionar um comentario com um usuario [um para muitos]
 }

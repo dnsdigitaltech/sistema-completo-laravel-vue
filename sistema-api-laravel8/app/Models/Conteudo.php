@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Conteudo extends Model
 {
     use HasFactory;
+    
+    /**
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
+   protected $fillable = [
+       'titulo',
+       'texto',
+       'imagem',
+       'link',
+       'data',
+   ];
 }
