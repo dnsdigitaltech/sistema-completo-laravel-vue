@@ -29,3 +29,6 @@ php artisan make:model Conteudo -m
 php artisan make:model Comentario -m
 php artisan make:migration create_amigos_table --create=amigos
 php artisan make:migration create_curtidas_table --create=curtidas
+
+Criar tabelas
+php artisan migrate
