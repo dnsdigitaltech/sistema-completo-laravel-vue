@@ -1,7 +1,7 @@
 <template>
   <site-template>
     <span slot="menuesquerdo">
-       <img src="https://super.abril.com.br/wp-content/uploads/2019/07/site_poprede.png" class="responsive-img" alt="">
+       <img :src="usuario.imagem" class="responsive-img" alt="">
     </span>
     <span slot="principal">
       <h2>Perfil</h2>
@@ -66,7 +66,6 @@
           this.imagem = e.target.result;
         };
         reader.readAsDataURL(arquivo[0]);
-        console.log(this.imagem);
       },
       perfil(){
         axios.put(`http://127.0.0.1:8000/api/perfil`,{
@@ -81,7 +80,8 @@
           if(response.data.token){
             //login com sucesso
             console.log(response.data)
-           sessionStorage.setItem('usuario',JSON.stringify(response.data));
+            this.usuario = response.data;
+            sessionStorage.setItem('usuario',JSON.stringify(this.usuario));
            alert('Perfil atualizado com sucesso!')
           }else{
             //error de validação
