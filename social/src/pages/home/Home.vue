@@ -3,11 +3,11 @@
     <span slot="menuesquerdo">
       <div class="row valign-wrapper">
         <grid-vue tamanho="4">
-          <img src="https://materializecss.com/images/yuna.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+          <img :src="usuario.imagem" :alt="usuario.name" class="circle responsive-img"> <!-- notice the "circle" class -->
         </grid-vue>
         <grid-vue tamanho="8">
-          <h5>Maria</h5>
-          <span class="black-text">Add the "circle" class to it to make it appear circular.</span>
+          <h5>{{usuario.name}}</h5>
+          <span class="black-text">{{usuario.descricao}}</span>
         </grid-vue>
       </div>
     </span>
@@ -36,18 +36,24 @@
   import GridVue from '@/components/layouts/GridVue.vue'
   export default {
     name: 'Home',
+    data () {
+      return {
+        usuario: false
+      }
+    },
+    created() {
+      let usuarioAux = sessionStorage.getItem('usuario');
+      if(usuarioAux){
+        this.usuario = JSON.parse(usuarioAux)      
+      }
+    },
     components: {
       SiteTemplate,
       CardConteudoVue,
       CardDetalheVue,
       PublicarConteudoVue,
       GridVue
-    },
-    data () {
-      return {
-        
-      }
-    }
+    }    
   }
 </script>
 

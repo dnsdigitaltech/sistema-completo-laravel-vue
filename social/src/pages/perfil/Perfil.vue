@@ -7,7 +7,7 @@
       <h2>Perfil</h2>
       <input type="text" placeholder="Nome" v-model="name">
       <input type="email" placeholder="E-mail" v-model="email">
-    
+      <textarea placeholder="Descrição" class="materialize-textarea" v-model="descricao"></textarea>
       <div class = "row">
         <div class = "file-field input-field">
           <div class = "btn">
@@ -42,6 +42,7 @@
         usuario:false,
         name:'',
         email:'', 
+        descricao:'',
         password:'',
         password_confirmation:'',
         imagem:''
@@ -53,6 +54,7 @@
         this.usuario = JSON.parse(usuarioAux)        
         this.name = this.usuario.name
         this.email = this.usuario.email
+        this.descricao = this.usuario.descricao
       }
     },
     methods: {
@@ -71,6 +73,7 @@
         axios.put(`http://127.0.0.1:8000/api/perfil`,{
           name: this.name,
           email: this.email,
+          descricao: this.descricao,
           imagem: this.imagem,
           password: this.password,
           password_confirmation: this.password_confirmation,

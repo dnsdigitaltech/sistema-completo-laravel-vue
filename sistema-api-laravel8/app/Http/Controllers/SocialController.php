@@ -22,7 +22,7 @@ class SocialController extends Controller
         //validação
         $validacao = Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users',            
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -38,7 +38,6 @@ class SocialController extends Controller
         ]);
 
         $user->token = $user->createToken($user->email)->accessToken;
-
         return $user;        
     }
 
@@ -60,6 +59,7 @@ class SocialController extends Controller
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
             $user = auth()->user();
             $user->token = $user->createToken($user->email)->accessToken;
+            $user->imagem = asset($user->imagem);
             return $user;  
         }else{
             return ['status' => 'false'];
@@ -77,6 +77,7 @@ class SocialController extends Controller
             $validacao = Validator::make($data, [
                 'name' => 'required|string|max:255',
                 'email' => ['required','string','email','max:255',Rule::unique('users')->ignore($user->id)],
+                'descricao' => 'required|string|max:255',
                 'password' => 'required|string|min:6|confirmed',
             ]);
             if($validacao->fails())
@@ -90,6 +91,7 @@ class SocialController extends Controller
             $validacao = Validator::make($data, [
                 'name' => 'required|string|max:255',
                 'email' => ['required','string','email','max:255',Rule::unique('users')->ignore($user->id)],
+                'descricao' => 'required|string|max:255',
             ]);
 
             if($validacao->fails())
@@ -98,6 +100,7 @@ class SocialController extends Controller
             }
             $user->name = $data['name'];
             $user->email = $data['email'];
+            $user->descricao = $data['descricao'];
         }
         if(isset($data['imagem'])){
             //validando a imagem base64
