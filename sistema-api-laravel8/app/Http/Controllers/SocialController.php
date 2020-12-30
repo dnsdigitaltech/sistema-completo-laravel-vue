@@ -110,6 +110,11 @@ class SocialController extends Controller
             if(!file_exists($diretorioPai)){
                 mkdir($diretorioPai,0700);
             }
+            if($user->imagem){
+                if(file_exists($user->imagem)){
+                    unlink($user->imagem);
+                }
+            }
             if(!file_exists($diretorioImagem)){
                 mkdir($diretorioImagem,0700);
             }
