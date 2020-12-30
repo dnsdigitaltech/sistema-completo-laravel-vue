@@ -29,15 +29,17 @@ class SocialController extends Controller
         if($validacao->fails())
         {
             return $validacao->errors();
-        }
-        
+        }        
+        $imagem = '/perfils/padrao.png';
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'imagem' => $imagem
         ]);
 
         $user->token = $user->createToken($user->email)->accessToken;
+        $user->imagem = asset($user->imagem);
         return $user;        
     }
 
