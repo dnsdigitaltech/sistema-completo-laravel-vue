@@ -20,6 +20,17 @@ class Comentario extends Model
         'data',
     ];
 
-    
+    //Lista o usuário que é dono do comentário
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 
+    //relacionamento de comnetario com conteúdo
+    //um conteúdo poderá ter vário comentários, o cometarop pertence a um conteudo
+    //um para muitos
+    public function conteudo()
+    {
+        return $this->belongsTo('App\Models\Conteudo');
+    }
 }

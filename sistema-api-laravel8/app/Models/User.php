@@ -47,4 +47,26 @@ class User extends Authenticatable
     ];
 
     //relacionar um comentario com um usuario [um para muitos]
+    public function comentarios()
+    {
+        return $this->hasMany('App\Models\Comentario');
+    }
+
+    //relacionar um conteudo com um usuario [um para muitos]
+    public function conteudos()
+    {
+        return $this->hasMany('App\Models\Conteudo');
+    }
+
+    //retornar as curtidas do user
+    public function curtidas()
+    {
+        return $this->belongsToMany('App\Model\Conteudo', 'curtidas', 'user_id', 'conteudo_id');
+    }
+
+    //retornar os amigos do user
+    public function amigos()
+    {
+        return $this->belongsToMany('App\Model\User', 'amigos', 'user_id', 'amigo_id');
+    }
 }
