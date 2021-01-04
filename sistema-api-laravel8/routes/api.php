@@ -43,13 +43,30 @@ Route::middleware('auth:api')->get('/usuario', function (Request $request) {
 Route::get('/testes', function(){
     //pegar o primeiro user
     $user = User::find(1);
-    /*//salvando o conteudo por user
-    $user->conteudos()->create([
+    //salvando o conteudo por user
+    /*$user->conteudos()->create([
         'titulo' => 'Conteudo 3',
         'texto' => 'Aqui o texto',
         'imagem' => 'Url da imagem',
         'link' => 'Link',
         'data' => '2021-01-04',
-    ]);*/
-    return $user->conteudos;
+    ]);
+    return $user->conteudos;*/
+
+    //Add amigos , para adicionar amigos é necessário ter dois ou mais users
+    $user2 = User::find(2);
+    
+    //primeiro pegar o usr logado attach pega o id do user e adiciona como amigo
+    /*$user->amigos()->attach($user2->id);*/
+
+    //remover amigos
+    /*$user->amigos()->detach($user2->id);*/
+
+    //adicionar/remover um amigo*/
+
+    //trazendo os amigos
+    /*return $user->amigos;*/
+
+    
+
 });

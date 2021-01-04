@@ -61,12 +61,12 @@ class User extends Authenticatable
     //retornar as curtidas do user
     public function curtidas()
     {
-        return $this->belongsToMany('App\Model\Conteudo', 'curtidas', 'user_id', 'conteudo_id');
+        return $this->belongsToMany('App\Models\Conteudo', 'curtidas', 'user_id', 'conteudo_id');
     }
 
     //retornar os amigos do user
     public function amigos()
     {
-        return $this->belongsToMany('App\Model\User', 'amigos', 'user_id', 'amigo_id');
+        return $this->belongsToMany('App\Models\User', 'amigos', 'user_id', 'amigo_id');
     }
 }
