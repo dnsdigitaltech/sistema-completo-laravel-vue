@@ -38,6 +38,6 @@ class Conteudo extends Model
     //relaciomento de curtidas
     public function curtidas()
     {
-        return $this->belongsToMany('App\Model\User', 'curtidas', 'conteudo_id', 'user_id');
+        return $this->belongsToMany('App\Models\User', 'curtidas', 'conteudo_id', 'user_id');
     }
 }

@@ -56,6 +56,7 @@ Route::get('/testes', function(){
     //Add amigos , para adicionar amigos é necessário ter dois ou mais users
     $user2 = User::find(2);
     
+    ////////////ADICIONAR AMIGOS///////////
     //primeiro pegar o usr logado attach pega o id do user e adiciona como amigo
     /*$user->amigos()->attach($user2->id);*/
 
@@ -63,10 +64,31 @@ Route::get('/testes', function(){
     /*$user->amigos()->detach($user2->id);*/
 
     //adicionar/remover um amigo*/
-
+    /*$user->amigos()->toggle($user2->id);*/
     //trazendo os amigos
     /*return $user->amigos;*/
 
+    ////////////ADICIONAR CURTIDAS///////////
+   /* $conteudo = Conteudo::find(1);//é necessário ter conteúdo
+    $user->curtidas()->toggle($conteudo->id);
     
+    return $conteudo->curtidas()->count();
+    return $conteudo->curtidas();*/
 
+    ///////////ADICIONAR COMENTÁTIOS///////////
+    $conteudo = Conteudo::find(1);
+    $user->comentarios()->create([
+        'conteudo_id' => $conteudo->id,
+        'texto' => 'Show de Bola',
+        'data' => date('Y-m-d'),
+    ]);
+
+    $conteudo = Conteudo::find(1);
+    $user2->comentarios()->create([
+        'conteudo_id' => $conteudo->id,
+        'texto' => 'Não gostei',
+        'data' => date('Y-m-d'),
+    ]);
+
+    return $conteudo->comentarios;
 });
