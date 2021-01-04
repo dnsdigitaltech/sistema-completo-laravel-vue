@@ -31,7 +31,6 @@
 
 <script>
   import SiteTemplate from '@/templates/SiteTemplate.vue'
-  import axios from 'axios'
   export default {
     name: 'Perfil',
     components: {
@@ -70,7 +69,7 @@
         reader.readAsDataURL(arquivo[0]);
       },
       perfil(){
-        axios.put(`http://127.0.0.1:8000/api/perfil`,{
+        this.$http.put(this.$urlAPI+`perfil`,{
           name: this.name,
           email: this.email,
           descricao: this.descricao,

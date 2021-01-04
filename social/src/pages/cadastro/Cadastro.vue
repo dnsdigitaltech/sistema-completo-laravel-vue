@@ -17,7 +17,7 @@
 
 <script>
   import LoginTemplate from '@/templates/LoginTemplate.vue'
-  import axios from 'axios'
+
   export default {
     name: 'Cadastro',
     components: {
@@ -34,7 +34,7 @@
     methods: {
       cadastro(){
         console.log('ok')
-        axios.post(`http://127.0.0.1:8000/api/cadastro`,{
+        this.$http.post(this.$urlAPI+`cadastro`,{
           name: this.name,
           email: this.email,
           password: this.password,
