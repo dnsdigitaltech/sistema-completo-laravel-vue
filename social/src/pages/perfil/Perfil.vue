@@ -78,18 +78,18 @@
           password_confirmation: this.password_confirmation,
         },{"headers":{"authorization":"Bearer "+this.usuario.token}})
         .then(response => {
-          console.log(this.usuario.token)
-          if(response.data.token){
+          console.log(this.usuario.status)
+          if(response.data.status){
             //login com sucesso
-            console.log(response.data)
-            this.usuario = response.data;
+            console.log(response.data.usuario)
+            this.usuario = response.data.usuario;
             sessionStorage.setItem('usuario',JSON.stringify(this.usuario));
            alert('Perfil atualizado com sucesso!')
-          }else{
+          }else if(response.data.status == false && response.data.validacao){
             //error de validação
-            console.log('error de validação')
+            //console.log('error de validação')
             let erros = '';
-            for(let erro of Object.values(response.data)){
+            for(let erro of Object.values(response.data.erros)){
               erros += erro + " ";
             }
             alert(erros);

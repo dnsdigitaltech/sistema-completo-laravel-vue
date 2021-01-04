@@ -35,10 +35,6 @@ Route::group([
     Route::put('/perfil', [SocialController::class, 'perfil']);
 });
 
-Route::middleware('auth:api')->get('/usuario', function (Request $request) {
-    return $request->user();
-});
-
 //////////////////////////TESTES//////////////////////////
 Route::get('/testes', function(){
     //pegar o primeiro user

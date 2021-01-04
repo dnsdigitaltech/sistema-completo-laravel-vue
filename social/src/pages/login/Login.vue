@@ -34,26 +34,25 @@
           password: this.password
         })
         .then(response => {
-          console.log(response)
-          if(response.data.token){
+          //console.log(response)
+          if(response.data.status){
             //login com sucesso
             console.log('login com sucesso')
-            sessionStorage.setItem('usuario',JSON.stringify(response.data));
+            sessionStorage.setItem('usuario',JSON.stringify(response.data.usuario));
             //ao logar vai pra home
             this.$router.push('/')
-
-          }else if(response.data.status == 'false'){
-            //login não existe
-            console.log('login não existe')
-            alert('Login iválido!');
-          }else{
+          }else if(response.data.status == false && response.data.validacao){
             //error de validação
             console.log('error de validação')
             let erros = '';
-            for(let erro of Object.values(response.data)){
+            for(let erro of Object.values(response.data.erros)){
               erros += erro + " ";
             }
             alert(erros);
+          }else{
+            //login não existe
+            console.log('login não existe')
+            alert('Login iválido!');
           }
         })
         .catch(e => {

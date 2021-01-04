@@ -28,7 +28,7 @@ class SocialController extends Controller
 
         if($validacao->fails())
         {
-            return $validacao->errors();
+            return ['status' => 'false', "validacao"=>true, "erros"=>$validacao->errors()];
         }        
         $imagem = '/perfils/padrao.png';
         $user = User::create([
@@ -40,7 +40,7 @@ class SocialController extends Controller
 
         $user->token = $user->createToken($user->email)->accessToken;
         $user->imagem = asset($user->imagem);
-        return $user;        
+        return ['status'=>true, "usuario"=>$user];       
     }
 
     public function login(Request $request)
@@ -55,16 +55,16 @@ class SocialController extends Controller
 
         if($validacao->fails())
         {
-            return $validacao->errors();
+            return ['status'=>false, "validacao"=>true, "erros"=>$validacao->errors()];
         }
         
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
             $user = auth()->user();
             $user->token = $user->createToken($user->email)->accessToken;
             $user->imagem = asset($user->imagem);
-            return $user;  
+            return ['status'=>true, "usuario"=>$user];  
         }else{
-            return ['status' => 'false'];
+            return ['status'=>false];
         }    
     }
 
@@ -84,7 +84,7 @@ class SocialController extends Controller
             ]);
             if($validacao->fails())
             {
-                return $validacao->errors();
+                return ['status' => 'false', "validacao"=>true, "erros"=>$validacao->errors()];
             }
 
             $user->password = bcrypt($data['password']);
@@ -98,7 +98,7 @@ class SocialController extends Controller
 
             if($validacao->fails())
             {
-                return $validacao->errors();
+                return ['status' => 'false', "validacao"=>true, "erros"=>$validacao->errors()];
             }
             $user->name = $data['name'];
             $user->email = $data['email'];
@@ -137,7 +137,7 @@ class SocialController extends Controller
             ],['base64image'=>'Imagem inválida']);
     
             if($valiacao->fails()){
-              return $valiacao->errors();
+                return ['status' => 'false', "validacao"=>true, "erros"=>$validacao->errors()];
             }
 
             $time = time();
@@ -166,7 +166,7 @@ class SocialController extends Controller
 
         $user->imagem = asset($user->imagem);
         $user->token = $user->createToken($user->email)->accessToken;
-        return $user; 
+        return ['status'=>true, "usuario"=>$user]; 
         
     }
 }
