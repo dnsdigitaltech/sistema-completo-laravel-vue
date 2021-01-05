@@ -56,19 +56,13 @@
     },
     created() {
       console.log('created');
-      let usuarioAux = sessionStorage.getItem('usuario');
+      let usuarioAux = this.$store.getters.getUsuario
       if(usuarioAux){
-        this.usuario = JSON.parse(usuarioAux)
+        this.usuario = this.$store.getters.getUsuario
         //se tiver logado vai pra home
         this.$router.push('/')
       }
-    },
-    methods: {
-      sair(){
-        sessionStorage.clear();
-        this.usuario = false
-      }
-    },
+    }
   }
 </script>
 

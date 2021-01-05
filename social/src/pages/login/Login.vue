@@ -38,6 +38,7 @@
           if(response.data.status){
             //login com sucesso
             console.log('login com sucesso')
+            this.$store.commit('setUsuario', response.data.usuario)
             sessionStorage.setItem('usuario',JSON.stringify(response.data.usuario));
             //ao logar vai pra home
             this.$router.push('/')
