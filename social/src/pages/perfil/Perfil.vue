@@ -48,9 +48,9 @@
       }
     },
     created() {
-      let usuarioAux = sessionStorage.getItem('usuario');
+      let usuarioAux = this.$store.getters.getUsuario
       if(usuarioAux){
-        this.usuario = JSON.parse(usuarioAux)        
+        this.usuario = this.$store.getters.getUsuario      
         this.name = this.usuario.name
         this.email = this.usuario.email
         this.descricao = this.usuario.descricao
@@ -76,13 +76,14 @@
           imagem: this.imagem,
           password: this.password,
           password_confirmation: this.password_confirmation,
-        },{"headers":{"authorization":"Bearer "+this.usuario.token}})
+        },{"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
         .then(response => {
           console.log(this.usuario.status)
           if(response.data.status){
             //login com sucesso
-            console.log(response.data.usuario)
+            //console.log(response.data.usuario)
             this.usuario = response.data.usuario;
+            this.$store.commit('setUsuario', response.data.usuario)
             sessionStorage.setItem('usuario',JSON.stringify(this.usuario));
            alert('Perfil atualizado com sucesso!')
           }else if(response.data.status == false && response.data.validacao){
