@@ -26,7 +26,7 @@ class AddDescricaoTableUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('descricao');
+            $table->dropColumn('descricao')->nullable();
         });
     }
 }

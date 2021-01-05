@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\ConteudoController;
 use App\Models\User;
 use App\Models\Conteudo;
 use App\Models\Comentario;
@@ -33,9 +34,10 @@ Route::group([
     'middleware' => 'auth:api',
 ], function ($router) {
     Route::put('/perfil', [SocialController::class, 'perfil']);
+    Route::post('/conteudo/adicionar', [ConteudoController::class, 'adicionar']);
 });
 
-//////////////////////////TESTES//////////////////////////
+/*//////////////////////////TESTES//////////////////////////
 Route::get('/testes', function(){
     //pegar o primeiro user
     $user = User::find(1);
@@ -50,7 +52,7 @@ Route::get('/testes', function(){
     return $user->conteudos;*/
 
     //Add amigos , para adicionar amigos é necessário ter dois ou mais users
-    $user2 = User::find(2);
+    //$user2 = User::find(2);
     
     ////////////ADICIONAR AMIGOS///////////
     //primeiro pegar o usr logado attach pega o id do user e adiciona como amigo
@@ -72,7 +74,7 @@ Route::get('/testes', function(){
     return $conteudo->curtidas();*/
 
     ///////////ADICIONAR COMENTÁTIOS///////////
-    $conteudo = Conteudo::find(1);
+    /*$conteudo = Conteudo::find(1);
     $user->comentarios()->create([
         'conteudo_id' => $conteudo->id,
         'texto' => 'Show de Bola',
@@ -87,4 +89,4 @@ Route::get('/testes', function(){
     ]);
 
     return $conteudo->comentarios;
-});
+});*/

@@ -26,7 +26,7 @@ class AddImagemTableUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('imagem');
+            $table->dropColumn('imagem')->nullable();
         });
     }
 }
