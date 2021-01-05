@@ -46,6 +46,13 @@
                 console.log(response.data.conteudos);
                 this.conteudo =  { titulo:'', texto:'', link:'', imagem:'' }
                 this.$store.commit('setConteudosLinhaTempo', response.data.conteudos.data)
+              }else if(response.data.status == false && response.data.validacao){
+                //error de validação
+                let erros = '';
+                for(let erro of Object.values(response.data.erros)){
+                  erros += erro + " ";
+                }
+                alert(erros);
               }
             })
           }

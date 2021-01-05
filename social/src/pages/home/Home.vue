@@ -21,6 +21,7 @@
           :img = "item.imagem"
           :titulo = "item.titulo"
           :txt = "item.texto"
+          :link = "item.link"
         />
       </card-conteudo-vue>
     </span>
