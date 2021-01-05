@@ -54,7 +54,6 @@
         this.name = this.usuario.name
         this.email = this.usuario.email
         this.descricao = this.usuario.descricao
-        this.imagem = this.usuario.imagem
       }
     },
     methods: {
@@ -79,7 +78,7 @@
           password_confirmation: this.password_confirmation,
         },{"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
         .then(response => {
-          console.log(this.usuario.status)
+          //console.log(this.usuario.status)
           if(response.data.status){
             //login com sucesso
             //console.log(response.data.usuario)
