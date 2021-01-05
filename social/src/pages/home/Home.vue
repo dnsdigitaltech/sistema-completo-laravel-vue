@@ -13,7 +13,7 @@
     </span>
     <span slot="principal">
       <publicar-conteudo-vue />
-      <card-conteudo-vue v-for="item in conteudos" :key="item.id"
+      <card-conteudo-vue v-for="item in listaConteudos" :key="item.id"
         :perfil = "item.user.imagem" 
         :nome = "item.user.name" 
         :data = "item.data">      
@@ -38,8 +38,7 @@
     name: 'Home',
     data () {
       return {
-        usuario: false,
-        conteudos: []
+        usuario: false
       }
     },
     created() {
@@ -50,7 +49,7 @@
         .then(response => {
           console.log(response)
           if(response.data.status){
-            this.conteudos = response.data.conteudos.data
+            this.$store.commit('setConteudosLinhaTempo', response.data.conteudos.data)
           }
         })
         .catch(e => {
@@ -66,7 +65,12 @@
       CardDetalheVue,
       PublicarConteudoVue,
       GridVue
-    }    
+    },
+    computed: {
+      listaConteudos(){
+        return this.$store.getters.getConteudosLinhaTempo;
+      }
+    }
   }
 </script>
 
