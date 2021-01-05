@@ -38,10 +38,15 @@ Route::group([
     Route::get('/conteudo/lista', [ConteudoController::class, 'lista']);
 });
 
-/*//////////////////////////TESTES//////////////////////////
-Route::get('/testes', function(){
+//////////////////////////TESTES//////////////////////////
+/*Route::get('/testes', function(){
     //pegar o primeiro user
     $user = User::find(1);
+    $user2 = User::find(2);
+    $conteudos = Conteudo::all();
+    foreach($conteudos as $key => $value){
+        $value->delete();
+    }
     //salvando o conteudo por user
     /*$user->conteudos()->create([
         'titulo' => 'Conteudo 3',
