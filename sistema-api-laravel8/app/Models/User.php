@@ -69,4 +69,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\User', 'amigos', 'user_id', 'amigo_id');
     }
+
+    //trazer a url completa da imagem - definindo mutacao
+    public function getImagemAttribute($value)
+    {
+        return asset($value);
+    }
 }

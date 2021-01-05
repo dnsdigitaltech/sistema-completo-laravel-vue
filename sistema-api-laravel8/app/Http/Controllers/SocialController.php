@@ -39,7 +39,7 @@ class SocialController extends Controller
         ]);
 
         $user->token = $user->createToken($user->email)->accessToken;
-        $user->imagem = asset($user->imagem);
+        //$user->imagem = asset($user->imagem);
         return ['status'=>true, "usuario"=>$user];       
     }
 
@@ -61,7 +61,7 @@ class SocialController extends Controller
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']])){
             $user = auth()->user();
             $user->token = $user->createToken($user->email)->accessToken;
-            $user->imagem = asset($user->imagem);
+            //$user->imagem = asset($user->imagem);
             return ['status'=>true, "usuario"=>$user];  
         }else{
             return ['status'=>false];
@@ -164,7 +164,7 @@ class SocialController extends Controller
 
         $user->save();
 
-        $user->imagem = asset($user->imagem);
+        //$user->imagem = asset($user->imagem);
         $user->token = $user->createToken($user->email)->accessToken;
         return ['status'=>true, "usuario"=>$user]; 
         

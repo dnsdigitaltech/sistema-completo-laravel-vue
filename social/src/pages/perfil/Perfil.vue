@@ -54,6 +54,7 @@
         this.name = this.usuario.name
         this.email = this.usuario.email
         this.descricao = this.usuario.descricao
+        this.imagem = this.usuario.imagem
       }
     },
     methods: {

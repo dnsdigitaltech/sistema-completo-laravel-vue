@@ -13,14 +13,14 @@
     </span>
     <span slot="principal">
       <publicar-conteudo-vue />
-      <card-conteudo-vue 
-        perfil = "https://materializecss.com/images/yuna.jpg" 
-        nome="Maria Silva" 
-        data="22/12/20 15:00">      
-        <card-detalhe-vue
-          img = "https://materializecss.com/images/sample-1.jpg"
-          titulo = "título dinamico"
-          txt = "sdv ksbd vksdb vbsd vbs dbv sdv snd vnsd vnsd vn sdnv snd vnsd vnsdvnmsd vn sdonv sdn vosnd vnsd vnsd vsn"
+      <card-conteudo-vue v-for="item in conteudos" :key="item.id"
+        :perfil = "item.user.imagem" 
+        :nome = "item.user.name" 
+        :data = "item.data">      
+        <card-detalhe-vue 
+          :img = "item.imagem"
+          :titulo = "item.titulo"
+          :txt = "item.texto"
         />
       </card-conteudo-vue>
     </span>
@@ -38,13 +38,26 @@
     name: 'Home',
     data () {
       return {
-        usuario: false
+        usuario: false,
+        conteudos: []
       }
     },
     created() {
       let usuarioAux = this.$store.getters.getUsuario
       if(usuarioAux){
-        this.usuario = this.$store.getters.getUsuario     
+        this.usuario = this.$store.getters.getUsuario  
+        this.$http.get(this.$urlAPI+`conteudo/lista`,{"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
+        .then(response => {
+          console.log(response)
+          if(response.data.status){
+            this.conteudos = response.data.conteudos.data
+          }
+        })
+        .catch(e => {
+          alert("Erro! Tente novamente mais tarde!")
+        })
+        
+        
       }
     },
     components: {
