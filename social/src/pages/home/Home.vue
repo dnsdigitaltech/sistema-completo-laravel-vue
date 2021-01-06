@@ -16,6 +16,7 @@
       <card-conteudo-vue v-for="item in listaConteudos" :key="item.id"
         :id = "item.id" 
         :totalcurtidas = "item.total_curtidas" 
+        :totalcomentarios = "item.total_comentarios" 
         :curtiuconteudo = "item.curtiu_conteudo" 
         :perfil = "item.user.imagem" 
         :nome = "item.user.name" 

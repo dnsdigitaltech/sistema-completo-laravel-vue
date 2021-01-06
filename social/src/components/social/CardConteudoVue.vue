@@ -19,7 +19,7 @@
             <div class="card-action">
                 <p>
                     <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>{{totalCurtidas}}</a>
-                    <a style="cursor: pointer;" @click="abreComentarios(id)"><i class="material-icons">insert_comment</i>22</a>
+                    <a style="cursor: pointer;" @click="abreComentarios(id)"><i class="material-icons">insert_comment</i>{{totalcomentarios}}</a>
                 </p>
                 <p v-if="exibirComentario" class="right-align">
                     <input type="text" placeholder="Comentar">
@@ -53,7 +53,7 @@
     import GridVue from '@/components/layouts/GridVue.vue'
     export default {
         name: 'CardConteudoVue',
-        props: ['id', 'totalcurtidas', 'curtiuconteudo', 'perfil', 'nome',  'data'],        
+        props: ['id', 'totalcurtidas', 'curtiuconteudo', 'totalcomentarios', 'perfil', 'nome',  'data'],        
         data() {
             return {
                 curtiu: this.curtiuconteudo ? 'favorite' : 'favorite_border',
