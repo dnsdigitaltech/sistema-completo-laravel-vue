@@ -40,14 +40,22 @@ Route::group([
 });
 
 //////////////////////////TESTES//////////////////////////
-/*Route::get('/testes', function(){
+Route::get('/testes', function(){
     //pegar o primeiro user
-    $user = User::find(1);
-    $user2 = User::find(2);
-    $conteudos = Conteudo::all();
+    $user = User::find(4);
+    //$user2 = User::find(2);
+   /* $conteudos = Conteudo::all();
     foreach($conteudos as $key => $value){
         $value->delete();
     }
+*/
+//dd(Conteudo::all());
+   /* $conteudo = Conteudo::find(15);
+    $user->comentarios()->create([
+        'conteudo_id' => $conteudo->id,
+        'texto' => 'Show de Bola',
+        'data' => date('Y-m-d H:i:s'),
+    ]);
     //salvando o conteudo por user
     /*$user->conteudos()->create([
         'titulo' => 'Conteudo 3',
@@ -95,5 +103,5 @@ Route::group([
         'data' => date('Y-m-d'),
     ]);
 
-    return $conteudo->comentarios;
-});*/
+    return $conteudo->comentarios;*/
+});

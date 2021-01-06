@@ -19,7 +19,7 @@
             <div class="card-action">
                 <p>
                     <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>{{totalCurtidas}}</a>
-                    <a style="cursor: pointer;" @click="abreComentarios(id)"><i class="material-icons">insert_comment</i>{{totalcomentarios}}</a>
+                    <a style="cursor: pointer;" @click="abreComentarios(id)"><i class="material-icons">insert_comment</i>{{comentarios.length}}</a>
                 </p>
                 <p v-if="exibirComentario" class="right-align">
                     <input type="text" placeholder="Comentar">
@@ -27,15 +27,10 @@
                 </p>
                 <p v-if="exibirComentario">
                     <ul class="collection">
-                        <li class="collection-item avatar">
+                        <li class="collection-item avatar" v-for="item in comentarios" :key="item.id">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
-                            <span class="title">Davi Bernardo <small> - 13h30 06/01/2020</small></span>
-                            <p>Gostei desse comentário </p> 
-                        </li>
-                        <li class="collection-item avatar">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
-                            <span class="title">Davi Bernardo <small> - 13h30 06/01/2020</small></span>
-                            <p>Gostei desse comentário </p> 
+                            <span class="title">id usuario = {{item.user_id}}<small> - {{item.data}}</small></span>
+                            <p>{{item.texto}}</p> 
                         </li>
                         <li class="collection-item avatar">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
@@ -53,7 +48,7 @@
     import GridVue from '@/components/layouts/GridVue.vue'
     export default {
         name: 'CardConteudoVue',
-        props: ['id', 'totalcurtidas', 'curtiuconteudo', 'totalcomentarios', 'perfil', 'nome',  'data'],        
+        props: ['id', 'totalcurtidas', 'curtiuconteudo', 'comentarios', 'perfil', 'nome',  'data'],        
         data() {
             return {
                 curtiu: this.curtiuconteudo ? 'favorite' : 'favorite_border',
