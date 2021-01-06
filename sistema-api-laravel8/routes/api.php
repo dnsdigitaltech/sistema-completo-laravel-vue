@@ -37,6 +37,7 @@ Route::group([
     Route::post('/conteudo/adicionar', [ConteudoController::class, 'adicionar']);
     Route::get('/conteudo/lista', [ConteudoController::class, 'lista']);
     Route::put('/conteudo/curtir/{id}', [ConteudoController::class, 'curtir']);
+    Route::post('/conteudo/comentar/{id}', [ConteudoController::class, 'comentar']);
 });
 
 //////////////////////////TESTES//////////////////////////

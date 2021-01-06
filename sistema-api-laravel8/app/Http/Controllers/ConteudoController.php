@@ -71,4 +71,37 @@ class ConteudoController extends Controller
             return ['status'=>false, "error"=>'Conteúdo não existe'];
         }
     }
+
+    public function comentar($id, Request $request)
+    {
+        $data = $request->all();
+
+        //validação
+        $validacao = Validator::make($data, [
+            'texto' => 'required',
+        ]);
+
+        if($validacao->fails())
+        {
+            return ['status'=>false, "validacao"=>true, "erros"=>$validacao->errors()];
+        }
+
+        $conteudo = Conteudo::find($id);
+        if($conteudo){
+            $user = $request->user();
+            
+            $user->comentarios()->create([
+                'conteudo_id' => $conteudo->id,
+                'texto' => $data['texto'],
+                'data' => date('Y-m-d H:i:s')
+            ]);
+            
+            return [
+                'status'=>true, 
+                'lista'=> $this->lista($request)
+            ];
+        }else{
+            return ['status'=>false, "error"=>'Conteúdo não existe'];
+        }
+    }
 }

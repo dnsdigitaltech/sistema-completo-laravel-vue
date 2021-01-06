@@ -19,11 +19,11 @@
             <div class="card-action">
                 <p>
                     <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>{{totalCurtidas}}</a>
-                    <a style="cursor: pointer;" @click="abreComentarios(id)"><i class="material-icons">insert_comment</i>{{comentarios.length}}</a>
+                    <a style="cursor: pointer;" @click="abreComentarios()"><i class="material-icons">insert_comment</i>{{comentarios.length}}</a>
                 </p>
                 <p v-if="exibirComentario" class="right-align">
-                    <input type="text" placeholder="Comentar">
-                    <button class="btn waves-effect waves-light orange"><i class="material-icons">send</i></button>
+                    <input type="text" v-model="textoComentario" placeholder="Comentar">
+                    <button v-if="textoComentario" @click="comentar(id)" class="btn waves-effect waves-light orange"><i class="material-icons">send</i></button>
                 </p>
                 <p v-if="exibirComentario">
                     <ul class="collection">
@@ -53,7 +53,8 @@
             return {
                 curtiu: this.curtiuconteudo ? 'favorite' : 'favorite_border',
                 totalCurtidas: this.totalcurtidas,
-                exibirComentario: false
+                exibirComentario: false,
+                textoComentario: ''
             }
         },
         components: {
@@ -83,9 +84,28 @@
                 })
                 
             },
-            abreComentarios(id){
+            abreComentarios(){
                 this.exibirComentario = !this.exibirComentario
-            }          
+            },
+            comentar(id){
+                if(!this.textoComentario){
+                    return //se enviar vazio não vai
+                }
+                this.$http.post(this.$urlAPI+`conteudo/comentar/`+id,{texto:this.textoComentario},
+                {"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
+                .then(response => {
+                    if(response.data.status){
+                        this.textoComentario = "" //após envia recebe vazio
+                        this.$store.commit('setConteudosLinhaTempo', response.data.lista.conteudos.data)
+                    }else if(response.data.status == false){
+                        //error de validação
+                        alert(response.data.error);
+                    }
+                })
+                .catch(e => {
+                    alert("Erro! Tente novamente mais tarde!")
+                })
+            }         
         }
     }
 </script>
