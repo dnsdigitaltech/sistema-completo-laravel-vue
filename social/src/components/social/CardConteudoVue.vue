@@ -18,7 +18,8 @@
             </div>
             <div class="card-action">
                 <p>
-                    <i class="material-icons">favorite_border</i>
+                    <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>12</a>
+                    
                     <i class="material-icons">insert_comment</i>
                 </p>
             </div>
@@ -30,15 +31,25 @@
     import GridVue from '@/components/layouts/GridVue.vue'
     export default {
         name: 'CardConteudoVue',
-        props: ['perfil', 'nome',  'data'],        
+        props: ['id', 'perfil', 'nome',  'data'],        
         data() {
             return {
-                
+                curtiu: 'favorite_border'
             }
         },
         components: {
             GridVue
-        }
+        },
+        methods: {
+            curtida(id){
+                alert(id)
+                if(this.curtiu == 'favorite_border'){
+                    this.curtiu = 'favorite'
+                }else{
+                    this.curtiu = 'favorite_border'
+                }
+            }
+        },
     }
 </script>
 
