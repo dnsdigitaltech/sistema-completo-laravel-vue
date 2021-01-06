@@ -33,6 +33,11 @@ var store = {
     },
     setConteudosLinhaTempo(state, n){
       state.conteudosLinhaTempo = n
+    },
+    setPaginacaoConteudosLinhaTempo(state, lista){      
+      for(let item of lista){
+        state.conteudosLinhaTempo.push(item)
+      }
     }
   }
 }

@@ -28,6 +28,7 @@
           :link = "item.link"
         />
       </card-conteudo-vue>
+      <button v-if="this.urlProximaPagina" @click="carregaPaginacao()" class="btn waves-effect waves-light blue">Mais...</button>
     </span>
     
   </site-template>
@@ -43,7 +44,8 @@
     name: 'Home',
     data () {
       return {
-        usuario: false
+        usuario: false,
+        urlProximaPagina: null
       }
     },
     created() {
@@ -55,6 +57,7 @@
           console.log(response)
           if(response.data.status){
             this.$store.commit('setConteudosLinhaTempo', response.data.conteudos.data)
+            this.urlProximaPagina = response.data.conteudos.next_page_url
           }
         })
         .catch(e => {
@@ -70,6 +73,24 @@
       CardDetalheVue,
       PublicarConteudoVue,
       GridVue
+    },
+    methods: {
+      carregaPaginacao(){
+        if(!this.urlProximaPagina){
+          return
+        }
+        this.$http.get(this.urlProximaPagina,{"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
+        .then(response => {
+          //console.log(response)
+          if(response.data.status){
+            this.$store.commit('setPaginacaoConteudosLinhaTempo', response.data.conteudos.data)
+            this.urlProximaPagina = response.data.conteudos.next_page_url
+          }
+        })
+        .catch(e => {
+          alert("Erro! Tente novamente mais tarde!")
+        })
+      }
     },
     computed: {
       listaConteudos(){

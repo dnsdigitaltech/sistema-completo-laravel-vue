@@ -32,11 +32,6 @@
                             <span class="title">{{item.user.name}}<small> - {{item.data}}</small></span>
                             <p>{{item.texto}}</p> 
                         </li>
-                        <li class="collection-item avatar">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
-                            <span class="title">Davi Bernardo <small> - 13h30 06/01/2020</small></span>
-                            <p>Gostei desse comentário </p> 
-                        </li>
                     </ul>
                 </p>
             </div>
