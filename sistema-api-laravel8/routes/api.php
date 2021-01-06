@@ -36,6 +36,7 @@ Route::group([
     Route::put('/perfil', [SocialController::class, 'perfil']);
     Route::post('/conteudo/adicionar', [ConteudoController::class, 'adicionar']);
     Route::get('/conteudo/lista', [ConteudoController::class, 'lista']);
+    Route::put('/conteudo/curtir/{id}', [ConteudoController::class, 'curtir']);
 });
 
 //////////////////////////TESTES//////////////////////////

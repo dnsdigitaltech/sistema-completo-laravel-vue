@@ -18,7 +18,7 @@
             </div>
             <div class="card-action">
                 <p>
-                    <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>12</a>
+                    <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>{{totalCurtidas}}</a>
                     
                     <i class="material-icons">insert_comment</i>
                 </p>
@@ -34,7 +34,8 @@
         props: ['id', 'perfil', 'nome',  'data'],        
         data() {
             return {
-                curtiu: 'favorite_border'
+                curtiu: 'favorite_border',
+                totalCurtidas: 0
             }
         },
         components: {
@@ -42,12 +43,26 @@
         },
         methods: {
             curtida(id){
-                alert(id)
-                if(this.curtiu == 'favorite_border'){
-                    this.curtiu = 'favorite'
-                }else{
-                    this.curtiu = 'favorite_border'
-                }
+                this.$http.put(this.$urlAPI+`conteudo/curtir/`+id,{},
+                {"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
+                .then(response => {
+                    if(response.status){
+                        this.totalCurtidas = response.data
+                        if(this.curtiu == 'favorite_border'){
+                            this.curtiu = 'favorite'
+                        }else{
+                            this.curtiu = 'favorite_border'
+                        }
+
+                    }else if(response.data.status == false){
+                        //error de validação
+                        alert(response.data.error);
+                    }
+                })
+                .catch(e => {
+                    alert("Erro! Tente novamente mais tarde!")
+                })
+                
             }
         },
     }
