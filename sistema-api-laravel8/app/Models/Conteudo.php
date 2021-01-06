@@ -40,4 +40,12 @@ class Conteudo extends Model
     {
         return $this->belongsToMany('App\Models\User', 'curtidas', 'conteudo_id', 'user_id');
     }
+
+    //trazer a data formatada
+    public function getDataAttribute($value)
+    {
+        //return date('H:i d/m/Y', strtotime($value)); data normal
+        $data = date('H:i d/m/Y', strtotime($value));
+        return str_replace(':', 'h', $data);
+    }
 }
