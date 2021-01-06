@@ -31,11 +31,11 @@
     import GridVue from '@/components/layouts/GridVue.vue'
     export default {
         name: 'CardConteudoVue',
-        props: ['id', 'perfil', 'nome',  'data'],        
+        props: ['id', 'totalcurtidas', 'curtiuconteudo', 'perfil', 'nome',  'data'],        
         data() {
             return {
-                curtiu: 'favorite_border',
-                totalCurtidas: 0
+                curtiu: this.curtiuconteudo ? 'favorite' : 'favorite_border',
+                totalCurtidas: this.totalcurtidas,
             }
         },
         components: {
@@ -46,8 +46,9 @@
                 this.$http.put(this.$urlAPI+`conteudo/curtir/`+id,{},
                 {"headers":{"authorization":"Bearer "+this.$store.getters.getToken}})
                 .then(response => {
-                    if(response.status){
-                        this.totalCurtidas = response.data
+                    if(response.data.status){
+                        this.totalCurtidas = response.data.curtidas
+                        this.$store.commit('setConteudosLinhaTempo', response.data.lista.conteudos.data)
                         if(this.curtiu == 'favorite_border'){
                             this.curtiu = 'favorite'
                         }else{
