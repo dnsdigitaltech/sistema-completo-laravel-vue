@@ -19,8 +19,30 @@
             <div class="card-action">
                 <p>
                     <a style="cursor: pointer;" @click="curtida(id)"><i class="material-icons">{{curtiu}}</i>{{totalCurtidas}}</a>
-                    
-                    <i class="material-icons">insert_comment</i>
+                    <a style="cursor: pointer;" @click="abreComentarios(id)"><i class="material-icons">insert_comment</i>22</a>
+                </p>
+                <p v-if="exibirComentario" class="right-align">
+                    <input type="text" placeholder="Comentar">
+                    <button class="btn waves-effect waves-light orange"><i class="material-icons">send</i></button>
+                </p>
+                <p v-if="exibirComentario">
+                    <ul class="collection">
+                        <li class="collection-item avatar">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
+                            <span class="title">Davi Bernardo <small> - 13h30 06/01/2020</small></span>
+                            <p>Gostei desse comentário </p> 
+                        </li>
+                        <li class="collection-item avatar">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
+                            <span class="title">Davi Bernardo <small> - 13h30 06/01/2020</small></span>
+                            <p>Gostei desse comentário </p> 
+                        </li>
+                        <li class="collection-item avatar">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIn-gE6j6sjvg0ekFgFBIzVP5VdN3aBu9dLg&usqp=CAU" alt="" class="circle">
+                            <span class="title">Davi Bernardo <small> - 13h30 06/01/2020</small></span>
+                            <p>Gostei desse comentário </p> 
+                        </li>
+                    </ul>
                 </p>
             </div>
         </div>
@@ -36,6 +58,7 @@
             return {
                 curtiu: this.curtiuconteudo ? 'favorite' : 'favorite_border',
                 totalCurtidas: this.totalcurtidas,
+                exibirComentario: false
             }
         },
         components: {
@@ -64,8 +87,11 @@
                     alert("Erro! Tente novamente mais tarde!")
                 })
                 
-            }
-        },
+            },
+            abreComentarios(id){
+                this.exibirComentario = !this.exibirComentario
+            }          
+        }
     }
 </script>
 
